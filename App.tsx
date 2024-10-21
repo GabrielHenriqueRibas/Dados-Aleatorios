@@ -1,11 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, View } from "react-native";
+import Footer from "./components/Card/Footer";
+import { infos } from "./mocks/info";
+import Card from "./components";
+import Header from "./components/Card/Header";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Header></Header>
+      <FlatList
+        data={infos}
+        renderItem={({ item }) => (
+          <Card>
+            <Card.Body name={item.name} email={item.email} cpf={item.cpf} />
+          </Card>
+        )}
+      />
+      <Footer></Footer>
     </View>
   );
 }
@@ -13,8 +24,11 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  body: {
+    flex: 1,
   },
 });
